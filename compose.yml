@@ -7,3 +7,9 @@ services:
       POSTGRES_USER: root
       POSTGRES_PASSWORD: root
       POSTGRES_DB: test
+  server:
+    build: ./
+    ports:
+      - "3000:3000"
+    depends_on:
+      - pg

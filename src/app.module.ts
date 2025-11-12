@@ -8,11 +8,8 @@ import { BookingsModule } from './bookings/bookings.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: '127.0.0.1',
-      port: 5432,
-      username: 'root',
-      password: 'root',
-      database: 'test',
+      url:
+        process.env.PG_CONNECTION ?? 'postgres://root:root@localhost:5432/test',
       autoLoadEntities: true,
       synchronize: true,
     }),
