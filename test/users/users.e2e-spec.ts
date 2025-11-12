@@ -8,9 +8,7 @@ import { UsersModule } from '../../src/users/users.module';
 describe('Users - /users (e2e)', () => {
   const users = {
     id: 1,
-    firstName: 'FirstName #1',
-    lastName: 'LastName #1',
-    isActive: true,
+    name: 'name #1',
   };
 
   let app: INestApplication;

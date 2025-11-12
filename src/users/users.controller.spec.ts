@@ -4,8 +4,7 @@ import { UsersController } from './users.controller';
 import { UsersService } from './users.service';
 
 const createUserDto: CreateUserDto = {
-  firstName: 'firstName #1',
-  lastName: 'lastName #1',
+  name: 'name #1',
 };
 
 describe('UsersController', () => {
@@ -25,20 +24,17 @@ describe('UsersController', () => {
               .mockImplementation((user: CreateUserDto) =>
                 Promise.resolve({ id: '1', ...user }),
               ),
-            findAll: jest.fn().mockResolvedValue([
+            all: jest.fn().mockResolvedValue([
               {
-                firstName: 'firstName #1',
-                lastName: 'lastName #1',
+                name: 'name #1',
               },
               {
-                firstName: 'firstName #2',
-                lastName: 'lastName #2',
+                name: 'name #2',
               },
             ]),
             findOne: jest.fn().mockImplementation((id: string) =>
               Promise.resolve({
-                firstName: 'firstName #1',
-                lastName: 'lastName #1',
+                name: 'name #1',
                 id,
               }),
             ),
@@ -70,18 +66,17 @@ describe('UsersController', () => {
   describe('findAll()', () => {
     it('should find all users ', () => {
       usersController.findAll();
-      expect(usersService.findAll).toHaveBeenCalled();
+      expect(usersService.all).toHaveBeenCalled();
     });
   });
 
   describe('findOne()', () => {
     it('should find a user', () => {
       expect(usersController.findOne(1)).resolves.toEqual({
-        firstName: 'firstName #1',
-        lastName: 'lastName #1',
+        name: 'name #1',
         id: 1,
       });
-      expect(usersService.findOne).toHaveBeenCalled();
+      expect(usersService.find).toHaveBeenCalled();
     });
   });
 
