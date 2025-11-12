@@ -32,7 +32,7 @@ describe('UsersController', () => {
                 name: 'name #2',
               },
             ]),
-            findOne: jest.fn().mockImplementation((id: string) =>
+            find: jest.fn().mockImplementation((id: string) =>
               Promise.resolve({
                 name: 'name #1',
                 id,
@@ -63,14 +63,14 @@ describe('UsersController', () => {
     });
   });
 
-  describe('findAll()', () => {
+  describe('all()', () => {
     it('should find all users ', () => {
       usersController.findAll();
       expect(usersService.all).toHaveBeenCalled();
     });
   });
 
-  describe('findOne()', () => {
+  describe('find()', () => {
     it('should find a user', () => {
       expect(usersController.findOne(1)).resolves.toEqual({
         name: 'name #1',

@@ -6,18 +6,15 @@ import { UsersService } from './users.service';
 
 const userArray = [
   {
-    firstName: 'firstName #1',
-    lastName: 'lastName #1',
+    name: 'name #1',
   },
   {
-    firstName: 'firstName #2',
-    lastName: 'lastName #2',
+    name: 'name #2',
   },
 ];
 
 const oneUser = {
-  firstName: 'firstName #1',
-  lastName: 'lastName #1',
+  name: 'name #1',
 };
 
 describe('UserService', () => {
@@ -52,14 +49,12 @@ describe('UserService', () => {
   describe('create()', () => {
     it('should successfully insert a user', () => {
       const oneUser = {
-        firstName: 'firstName #1',
-        lastName: 'lastName #1',
+        name: 'name #1',
       };
 
       expect(
         service.create({
-          firstName: 'firstName #1',
-          lastName: 'lastName #1',
+          name: 'name #1',
         }),
       ).resolves.toEqual(oneUser);
     });
@@ -67,7 +62,7 @@ describe('UserService', () => {
 
   describe('findAll()', () => {
     it('should return an array of users', async () => {
-      const users = await service.findAll();
+      const users = await service.all();
       expect(users).toEqual(userArray);
     });
   });
@@ -75,7 +70,7 @@ describe('UserService', () => {
   describe('findOne()', () => {
     it('should get a single user', () => {
       const repoSpy = jest.spyOn(repository, 'findOneBy');
-      expect(service.findOne(1)).resolves.toEqual(oneUser);
+      expect(service.find(1)).resolves.toEqual(oneUser);
       expect(repoSpy).toHaveBeenCalledWith({ id: 1 });
     });
   });
