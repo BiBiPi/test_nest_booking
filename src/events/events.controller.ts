@@ -21,12 +21,12 @@ export class EventsController {
   }
 
   @Get()
-  findAll(): Promise<Event[]> {
+  all(): Promise<Event[]> {
     return this.eventsService.all();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<Event> {
+  find(@Param('id', ParseIntPipe) id: number): Promise<Event> {
     return this.eventsService.find(id);
   }
 

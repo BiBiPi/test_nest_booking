@@ -21,12 +21,12 @@ export class UsersController {
   }
 
   @Get()
-  findAll(): Promise<User[]> {
+  all(): Promise<User[]> {
     return this.usersService.all();
   }
 
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number): Promise<User> {
+  find(@Param('id', ParseIntPipe) id: number): Promise<User> {
     return this.usersService.find(id);
   }
 

@@ -1,4 +1,4 @@
 export class CreateEventDto {
   name: string;
-  datetime: Date;
+  date_time: Date;
 }

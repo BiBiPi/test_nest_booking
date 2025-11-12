@@ -1,7 +1,9 @@
+import { Booking } from 'src/bookings/booking.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -15,11 +17,14 @@ export class Event {
   name: string;
 
   @Column({ type: 'timestamptz' })
-  datetime: Date;
+  date_time: Date;
 
   @CreateDateColumn()
-  createdAt: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updated_at: Date;
+
+  @OneToMany(() => Booking, (booking) => booking.id)
+  bookings: Booking[];
 }

@@ -14,7 +14,7 @@ export class EventsService {
   create(createEventDto: CreateEventDto): Promise<Event> {
     const event = new Event();
     event.name = createEventDto.name;
-    event.datetime = createEventDto.datetime;
+    event.date_time = createEventDto.date_time;
 
     return this.EventsRepository.save(event);
   }

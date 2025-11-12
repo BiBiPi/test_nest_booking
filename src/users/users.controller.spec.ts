@@ -64,15 +64,15 @@ describe('UsersController', () => {
   });
 
   describe('all()', () => {
-    it('should find all users ', () => {
-      usersController.findAll();
+    it('should all users ', () => {
+      usersController.all();
       expect(usersService.all).toHaveBeenCalled();
     });
   });
 
   describe('find()', () => {
     it('should find a user', () => {
-      expect(usersController.findOne(1)).resolves.toEqual({
+      expect(usersController.find(1)).resolves.toEqual({
         name: 'name #1',
         id: 1,
       });
