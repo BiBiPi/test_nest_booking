@@ -23,8 +23,8 @@ export class BookingsService {
     return this.bookingsRepository.find();
   }
 
-  find(id: number): Promise<Booking> {
-    return this.bookingsRepository.findOneBy({ id: id });
+  find(find: Partial<Booking>): Promise<Booking> {
+    return this.bookingsRepository.findOneBy(find);
   }
 
   async remove(id: string): Promise<void> {

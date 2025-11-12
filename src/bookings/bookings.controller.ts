@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   ParseIntPipe,
+  HttpException,
 } from '@nestjs/common';
 import { CreateBookingDto } from './dto/create-booking.dto';
 import { Booking } from './booking.entity';
@@ -16,8 +17,12 @@ export class BookingsController {
   constructor(private readonly bookingsService: BookingsService) {}
 
   @Post('reserve')
-  create(@Body() createBookingDto: CreateBookingDto): Promise<Booking> {
-    return this.bookingsService.create(createBookingDto);
+  async create(@Body() createBookingDto: CreateBookingDto): Promise<Booking> {
+    if (!(await this.bookingsService.find(createBookingDto))) {
+      return this.bookingsService.create(createBookingDto);
+    } else {
+      throw new HttpException('Reserve exist!', 400);
+    }
   }
 
   @Get()
@@ -27,7 +32,7 @@ export class BookingsController {
 
   @Get(':id')
   find(@Param('id', ParseIntPipe) id: number): Promise<Booking> {
-    return this.bookingsService.find(id);
+    return this.bookingsService.find({ id: id });
   }
 
   @Delete(':id')
